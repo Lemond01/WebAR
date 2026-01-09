@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diagnóstico Three.js</title>
+</head>
+<body>
+    <h1>Diagnóstico Three.js</h1>
+    
+    <div id="status"></div>
+    
+    <script>
+        function testCDN(url) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = url;
+                script.onload = () => resolve(url);
+                script.onerror = () => reject(url);
+                document.head.appendChild(script);
+            });
+        }
+        
+        async function runDiagnosis() {
+            const statusDiv = document.getElementById('status');
+            const cdns = [
+                'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',
+                'https://unpkg.com/three@0.162.0/build/three.min.js',
+                'https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.min.js'
+            ];
+            
+            statusDiv.innerHTML = '<p>Probando CDNs disponibles...</p>';
+            
+            for (const cdn of cdns) {
+                try {
+                    await testCDN(cdn);
+                    statusDiv.innerHTML += `<p style="color:green">✓ ${cdn} - FUNCIONA</p>`;
+                    
+                    // Si funciona, mostrar información de Three.js
+                    setTimeout(() => {
+                        if (typeof THREE !== 'undefined') {
+                            statusDiv.innerHTML += `
+                                <p>Three.js cargado correctamente:</p>
+                                <ul>
+                                    <li>Versión: ${THREE.REVISION || 'Desconocida'}</li>
+                                    <li>WebGL disponible: ${!!THREE.WebGLRenderer}</li>
+                                </ul>
+                                <button onclick="window.location.href='index.html'">
+                                    Ir al proyecto principal
+                                </button>
+                            `;
+                        }
+                    }, 1000);
+                    
+                    break;
+                } catch (error) {
+                    statusDiv.innerHTML += `<p style="color:red">✗ ${cdn} - FALLA</p>`;
+                }
+            }
+        }
+        
+        runDiagnosis();
+    </script>
+</body>
+</html>

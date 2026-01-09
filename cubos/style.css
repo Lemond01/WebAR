@@ -1,0 +1,179 @@
+/* RESET Y CONFIGURACIÓN BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    overflow: hidden;
+    background: #000000;
+    color: #ffffff;
+    height: 100vh;
+}
+
+/* CONTENEDOR DE LA ESCENA 3D */
+#scene-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* PANEL DE CONTROL - ESTILO AGRESIVO */
+.controls {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    width: 280px;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 15px;
+    border: 1px solid #333333;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    border-radius: 0;
+}
+
+.controls h3 {
+    color: #ffffff;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #444444;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* GRUPOS DE CONTROL */
+.control-group {
+    margin-bottom: 18px;
+}
+
+.control-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: #cccccc;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* SELECTORES DE COLOR */
+#cube-color, #light-color {
+    width: 100%;
+    height: 35px;
+    border: 1px solid #333333;
+    background: #111111;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 0;
+    margin-bottom: 5px;
+}
+
+/* SLIDERS - ESTILO MÁS AGRESIVO */
+input[type="range"] {
+    width: 100%;
+    height: 6px;
+    background: #222222;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    border: 1px solid #333333;
+}
+
+/* Thumb del slider - CUADRADO */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #ffffff;
+    cursor: pointer;
+    border: 1px solid #333333;
+    border-radius: 0;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #ffffff;
+    cursor: pointer;
+    border: 1px solid #333333;
+    border-radius: 0;
+}
+
+/* VALORES DE LOS SLIDERS */
+.control-group span {
+    color: #ffffff;
+    font-weight: bold;
+    margin-left: 5px;
+    font-size: 13px;
+}
+
+/* BOTÓN DE REINICIO - ESTILO AGRESIVO */
+#reset {
+    width: 100%;
+    padding: 12px;
+    background: #222222;
+    color: #ffffff;
+    border: 1px solid #333333;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0;
+}
+
+#reset:hover {
+    background: #333333;
+    border-color: #444444;
+}
+
+#reset:active {
+    background: #111111;
+}
+
+/* INSTRUCCIONES */
+.instructions {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 10px 15px;
+    font-size: 11px;
+    z-index: 100;
+    border: 1px solid #333333;
+    border-radius: 0;
+}
+
+.instructions p {
+    color: #aaaaaa;
+    margin: 0;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .controls {
+        width: calc(100% - 30px);
+        max-width: 280px;
+        padding: 12px;
+    }
+    
+    .instructions {
+        width: calc(100% - 30px);
+        text-align: center;
+        left: 15px;
+        right: 15px;
+    }
+}
